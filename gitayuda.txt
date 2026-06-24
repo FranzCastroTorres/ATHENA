@@ -1,0 +1,103 @@
+PASO 1 - ENTRA A TU PROYECTO
+
+cd "/c/Users/Giulianno/OneDrive/Desktop/athena1/ATHENA"
+
+Si sale ATHENA en la ruta, estás dentro.
+
+--------------------------------------------------------------------------------
+
+PASO 2 - MIRA LAS RAMAS
+
+git branch -a
+
+Ahí vas a ver:
+
+main = la rama de Franz
+hector = la rama de Héctor
+giulianno/mi-primer-cambio = tu rama
+
+--------------------------------------------------------------------------------
+
+PASO 3 - GUARDA TU CHAMBA POR SI LAS MOSCAS
+
+(OJO: NO TOCA EL MAIN DE FRANZ)
+
+git add .
+git commit -m "Respaldo de cambios antes de integración"
+git push -u origin giulianno/mi-primer-cambio
+
+Traducción:
+👉 "Guárdame todo lo que he hecho hasta ahora por si la cago después"
+
+--------------------------------------------------------------------------------
+
+PASO 4 - BAJA LO ÚLTIMO DE FRANZ
+
+git checkout main
+git pull origin main
+
+Traducción:
+👉 "A ver qué ha subido Franz"
+
+--------------------------------------------------------------------------------
+
+PASO 5 - REGRESA A TU CHAMBA
+
+git checkout giulianno/mi-primer-cambio
+
+Traducción:
+👉 "Ya vi lo de Franz, ahora regreso a lo mío"
+
+--------------------------------------------------------------------------------
+
+OPCIÓN A - QUIERO MIS COSAS Y TAMBIÉN LAS DE FRANZ
+
+git merge main
+
+Traducción:
+👉 "Métele a mi trabajo todo lo nuevo que subió Franz"
+
+Resultado:
+
+Mi trabajo
++
+Trabajo de Franz
+=
+Todo junto
+
+--------------------------------------------------------------------------------
+
+OPCIÓN B - MI CHAMBA ESTÁ MEDIO HASTA LAS WEBAS, MEJOR EMPIEZO DE NUEVO CON LO DE FRANZ
+
+git checkout main
+git pull origin main
+git checkout -b giulianno-nuevo
+
+Traducción:
+👉 "Guárdame mi avance por si acaso, pero dame una copia nueva basada en lo que tiene Franz"
+
+Resultado:
+
+Tu rama vieja
+→ queda guardada
+
+Nueva rama
+→ empieza limpia con lo de Franz
+
+--------------------------------------------------------------------------------
+
+VERSIÓN ULTRA CRIOLLA
+
+Opción A:
+"Quiero mis cosas + las de Franz"
+
+primer comando: git merge main
+segundo comando: :wq
+tercer comando: git commit -m "Merge main"
+
+Opción B:
+"Mi avance queda guardado, pero mejor trabajo sobre lo que tiene Franz"
+
+git checkout main
+git pull origin main
+git checkout -b giulianno-nuevo
