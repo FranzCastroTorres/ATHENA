@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ATHENA - Editoriales</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+
+	<nav class="navbar navbar-dark bg-dark px-3">
+		<span class="navbar-brand">ATHENA - Mantenimiento de Editoriales</span>
+		<a href="/inicio" class="btn btn-sm btn-outline-light">Volver al inicio</a>
+	</nav>
+
+	<div class="container mt-4">
+		<div class="row">
+
+			<!-- FORMULARIO (izquierda) -->
+			<div class="col-md-5">
+				<h4>Datos de la Editorial</h4>
+				<form action="/editoriales/grabar" method="post" th:object="${editorial}">
+
+					<input type="hidden" th:field="*{idEditorial}">
+
+					<div class="mb-3">
+						<label class="form-label">Nombre</label>
+						<input type="text" th:field="*{nombre}" required
+							class="form-control" placeholder="Nombre de la editorial">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Teléfono</label>
+						<input type="text" th:field="*{telefono}"
+							class="form-control" placeholder="Teléfono">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Email</label>
+						<input type="email" th:field="*{email}"
+							class="form-control" placeholder="correo@editorial.com">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Dirección</label>
+						<input type="text" th:field="*{direccion}"
+							class="form-control" placeholder="Dirección">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Sitio Web</label>
+						<input type="text" th:field="*{sitioWeb}"
+							class="form-control" placeholder="www.editorial.com">
+					</div>
+
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					<a href="/editoriales" class="btn btn-secondary">Nuevo</a>
+				</form>
+
+				<div class="mt-3" th:if="${mensaje != null}">
+					<div th:class="${cssmensaje}" th:text="${mensaje}"></div>
+				</div>
+			</div>
+
+			<!-- TABLA (derecha) -->
+			<div class="col-md-7">
+				<h4>Editoriales Registradas</h4>
+				<table class="table table-striped table-hover">
+					<thead class="table-dark">
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Teléfono</th>
+							<th>Email</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="e : ${lstEditoriales}">
+							<td th:text="${e.idEditorial}"></td>
+							<td th:text="${e.nombre}"></td>
+							<td th:text="${e.telefono}"></td>
+							<td th:text="${e.email}"></td>
+							<td>
+								<a th:href="@{/editoriales/editar/{id}(id=${e.idEditorial})}"
+									class="btn btn-sm btn-warning">Editar</a>
+								<a th:href="@{/editoriales/eliminar/{id}(id=${e.idEditorial})}"
+									class="btn btn-sm btn-danger"
+									onclick="return confirm('¿Eliminar esta editorial?')">Eliminar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
