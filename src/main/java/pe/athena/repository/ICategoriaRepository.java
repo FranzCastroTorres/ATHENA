@@ -10,6 +10,9 @@ import pe.athena.model.Categoria;
 @Repository
 public interface ICategoriaRepository extends JpaRepository<Categoria, Integer> {
 
-	// listar solo los activos (borrado logico)
+	// listar solo activos
 	List<Categoria> findByEstado(Integer estado);
+
+	// buscar por descripcion exacta para validar duplicados / reactivar
+	Categoria findByDescripcion(String descripcion);
 }

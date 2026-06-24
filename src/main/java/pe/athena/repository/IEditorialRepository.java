@@ -10,6 +10,9 @@ import pe.athena.model.Editorial;
 @Repository
 public interface IEditorialRepository extends JpaRepository<Editorial, Integer> {
 
-	// listar solo los activos (borrado logico)
+	// listar solo activos
 	List<Editorial> findByEstado(Integer estado);
+
+	// buscar por nombre exacto para validar duplicados / reactivar
+	Editorial findByNombre(String nombre);
 }

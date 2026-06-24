@@ -10,6 +10,9 @@ import pe.athena.model.Autor;
 @Repository
 public interface IAutorRepository extends JpaRepository<Autor, Integer> {
 
-	// listar solo los activos (borrado logico) - Query Method del profesor
+	// listar solo activos
 	List<Autor> findByEstado(Integer estado);
+
+	// buscar por nombre exacto para validar duplicados / reactivar
+	Autor findByNombre(String nombre);
 }
